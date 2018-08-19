@@ -4,6 +4,14 @@ class BeatPrevious:
         if(not len(enemyHistory)):
             return "r"
 
-        last = enemyHistory[-1]
+        enemyLast = enemyHistory[-1]
+        selfLast = selfHistory[-1]
+
         opposing = {"r": "p","p": "s","s": "r"}
-        return opposing[last]
+
+        # if opponent just lost, expect them to switch to beat your previous move
+        if (selfLast == opposing[enemyLast]):
+            return enemyLast
+        else:
+            return opposing[enemyLast]
+
